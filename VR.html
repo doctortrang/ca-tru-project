@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VR Experience</title>
     <link rel="icon" sizes="32x32" href=ca-tru-prject/folk-music.png">
-    <link rel="stylesheet" href="ca-tru-prject/style/style.css">
-    <link rel="stylesheet" href="ca-tru-prject/style/VR.css">
+    <link rel="stylesheet" href="ca-tru-project/style/style.css">
+    <link rel="stylesheet" href="ca-tru-project/style/VR.css">
     <script src="ca-tru-prject/scripts/VR.js" defer></script>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -265,44 +265,65 @@ footer {
     </header>
         <h1>🎭 Experience VR Stage (VR 360°)</h1>
 
-<div class="vr-container">
-  <a-scene embedded>
+<a-scene embedded>
 
-    <!-- Ảnh 360 -->
-    <a-sky src="ca-tru-project/Stage.png"></a-sky>
+  <!-- Assets (QUAN TRỌNG) -->
+  <a-assets>
+    <img id="stage" src="ca-tru-prject/Stage.png">
+    <audio id="bgmusic" src="ca-tru-prject/sound.mp3"></audio>
+  </a-assets>
 
-    <!-- Âm thanh nền -->
-    <a-sound src="" autoplay="true" loop="true"></a-sound>
+  <!-- Ảnh 360 -->
+  <a-sky src="#stage" rotation="0 -90 0"></a-sky>
 
-    <!-- Tiêu đề -->
-    <a-text value="Ca Tru Stage"
-            position="0 2 -3"
-            align="center"
-            color="#FFF"
-            width="6">
-    </a-text>
+  <!-- Âm thanh -->
+  <a-entity sound="src: #bgmusic; autoplay: true; loop: true"></a-entity>
 
-    <!-- Hotspot 1 -->
-    <a-sphere position="2 1 -3" radius="0.3" color="red" event-set__click="scale: 1.5 1.5 1.5"></a-sphere>
-    <a-text value="Đào nương biểu diễn"
-            position="2 1.5 -3"
-            color="#FFF"
-            width="4">
-    </a-text>
+  <!-- Tiêu đề -->
+  <a-text value="Ca Tru Stage"
+          position="0 2 -3"
+          align="center"
+          color="#FFF"
+          width="6">
+  </a-text>
 
-    <!-- Hotspot 2 -->
-    <a-sphere position="-2 1 -3" radius="0.3" color="blue" event-set__click="scale: 1.5 1.5 1.5"></a-sphere>
-    <a-text value="Nhạc cụ phách"
-            position="-2 1.5 -3"
-            color="#FFF"
-            width="4">
-    </a-text>
+  <!-- Hotspot 1 -->
+  <a-sphere position="2 1 -3"
+            radius="0.3"
+            color="red"
+            event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3"
+            event-set__leave="_event: mouseleave; scale: 1 1 1"
+            event-set__click="_event: click; color: yellow">
+  </a-sphere>
 
-    <!-- Camera -->
-    <a-camera>
-      <a-cursor></a-cursor>
-    </a-camera>
+  <a-text value="Đào nương biểu diễn"
+          position="2 1.6 -3"
+          align="center"
+          color="#FFF"
+          width="4">
+  </a-text>
 
-  </a-scene>
+  <!-- Hotspot 2 -->
+  <a-sphere position="-2 1 -3"
+            radius="0.3"
+            color="blue"
+            event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3"
+            event-set__leave="_event: mouseleave; scale: 1 1 1"
+            event-set__click="_event: click; color: green">
+  </a-sphere>
+
+  <a-text value="Nhạc cụ phách"
+          position="-2 1.6 -3"
+          align="center"
+          color="#FFF"
+          width="4">
+  </a-text>
+
+  <!-- Camera VR -->
+  <a-entity camera look-controls>
+    <a-cursor fuse="true" fuse-timeout="1000"></a-cursor>
+  </a-entity>
+
+</a-scene>
 </div>
 </body>
